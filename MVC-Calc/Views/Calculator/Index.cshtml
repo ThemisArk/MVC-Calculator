@@ -1,0 +1,44 @@
+﻿@using MVC_Calc.Models;
+@model MVC_Calc.Models.CalculatorViewModel;
+
+@{
+    ViewData["Title"] = "Calculator Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Calculator</h1>
+    <p>Please input two numbers and choose an operation.</p>
+</div>
+
+<div class="text-center">
+    <form asp-action="Calculate" method="post">
+
+        @Html.AntiForgeryToken()
+
+        <input name="RequestModel.Num1" type="number" step="any" style="width: 200px;" placeholder="Input First number" />
+        
+        <select name="RequestModel.Operation" style="width: 150px;">
+            <option value="">--Please choose an option--</option>
+            <option value="0">Add</option>
+            <option value="1">Subtract</option>
+            <option value="2">Multiply</option>
+            <option value="3">Divide</option>
+        </select>
+        
+        <input name="RequestModel.Num2" type="number" step="any" style="width: 200px;" placeholder="Input Second number" />
+        
+        <button class="btn btn-primary" type="submit" style="height: 35px;">Calculate</button>
+
+        @*Validation helpers*@
+        <br>
+        <span asp-validation-for="RequestModel.Num1" class="text-danger"></span>
+        <span asp-validation-for="RequestModel.Operation" class="text-danger"></span>
+        <span asp-validation-for="RequestModel.Num2" class="text-danger"></span> 
+        </br>
+    </form>
+</div>
+
+@*Results Output*@
+<div class="text-center">
+    @await Html.PartialAsync("_ResultsPartial", Model)
+</div>

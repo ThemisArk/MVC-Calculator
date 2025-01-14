@@ -1,0 +1,18 @@
+﻿@model MVC_Calc.Models.CalculatorViewModel
+
+@if (Model?.ResponseModel != null)
+{
+    if (!string.IsNullOrEmpty(Model.ResponseModel.ErrorMessage))
+    {
+        <div class="text-center">
+            <p class="text-danger">@Model.ResponseModel.ErrorMessage</p>
+        </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <h3 style="margin-bottom: 10px; font-size: 1.25rem;">Result:</h3>
+            <p style="font-size: 1.25rem; color: #333; font-weight: bold;">@Model.ResponseModel.Result</p>
+        </div>
+    }
+}
